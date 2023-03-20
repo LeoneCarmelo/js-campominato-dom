@@ -8,6 +8,7 @@ Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed 
 const btnEl = document.getElementById('btn') // button
 const containerEl = document.querySelector('.container') // container
 const selectEl = document.querySelector('select') // select
+const resultEl = document.createElement('div') // create an element to let the player see the points he collected
 
 
 //grid level
@@ -28,7 +29,6 @@ function grid(cellQuantity, width_cell, width_container, bombs) {
                 singleCell.textContent = ''//remove text
                 singleCell.style.backgroundColor = 'orangered'//set a bg-color
                 singleCell.style.transition = 'background-color 0.75s'//set a transition
-                const resultEl = document.createElement('div') // create an element to let the player see the points he collected
                 //styling the element
                 resultEl.textContent = `You lost, you've collected ${points} points`
                 resultEl.style.textAlign = 'center'
@@ -58,6 +58,7 @@ function grid(cellQuantity, width_cell, width_container, bombs) {
 //generate grid
 btnEl.addEventListener('click', function start() {
     containerEl.innerHTML = '' // empty container
+    resultEl.innerHTML = '' // empty warning
     let cellNumbers = levels();
     let cellWidth = widthCell()
     let containerWidth = widthContainer()
@@ -132,3 +133,4 @@ function generateBombs(maxValue) {
 
     return arrBombs;
 }
+
