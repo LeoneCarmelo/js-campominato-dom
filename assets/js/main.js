@@ -23,11 +23,10 @@ function grid(cellQuantity, width_cell, width_container, bombs) {
             containerEl.style.width = width_container // set the right width for the container
             containerEl.append(singleCell) //
             singleCell.addEventListener('click', function(){ // set blue color on cell when clicked
-                    console.log(singleCell.textContent)
-                    singleCell.textContent = ''
-                    singleCell.style.backgroundColor = 'deepskyblue'
-                    singleCell.style.transition = 'background-color 0.75s'
-                
+                                console.log(singleCell.textContent)
+                                singleCell.textContent = ''
+                                singleCell.style.backgroundColor = 'deepskyblue'
+                                singleCell.style.transition = 'background-color 0.75s'
             })
         } 
 }
@@ -39,6 +38,7 @@ btnEl.addEventListener('click', function() {
     let cellWidth = widthCell()
     let containerWidth = widthContainer()
     let arrBombs = bombs()
+    console.log(arrBombs)
     grid(cellNumbers, cellWidth, containerWidth, arrBombs)
 
 })
@@ -82,36 +82,30 @@ function widthContainer() {
     return width
 }
 
-//Set bombs
+//Generate the right number of bombs for every level  
 function bombs() {
-    const bombs = 16
     let arrBombs = []
-    let bomb = 0
     if (selectEl.value == selectEl[0].value) {
-        for (let i = 0; i < bombs; i++){
-            bomb = Math.ceil(Math.random() * selectEl[0].value)
-            if (!(arrBombs.includes(bomb, -1))) {
-                arrBombs.push(bomb)
-            }
-        }
+        arrBombs = generateBombs(selectEl[0].value)
     } else if (selectEl.value == selectEl[1].value) {
-        for (let i = 0; i < bombs; i++){
-            bomb = Math.ceil(Math.random() * selectEl[1].value)
-            if (!(arrBombs.includes(bomb, -1))) {
-                arrBombs.push(bomb)
-            }
-        }
+        arrBombs = generateBombs(selectEl[1].value)
     } else if (selectEl.value == selectEl[2].value) {
-        for (let i = 0; i < bombs; i++){
-            bomb = Math.ceil(Math.random() * selectEl[2].value)
-            if (!(arrBombs.includes(bomb, -1))) {
-                arrBombs.push(bomb)
-            }
-            console.log(bombs)
-        }
+        arrBombs = generateBombs(selectEl[2].value)
     }
-    console.log(arrBombs)
     return arrBombs
 }
+//Generate 16 random bombs
+function generateBombs(maxValue) {
 
+    let arrBombs = [];
+    let i = 0;
+    while (arrBombs.length < 16) {
+        const bomb = Math.ceil(Math.random() * maxValue);
+        if ( !arrBombs.includes(bomb) ) {
+            arrBombs.push(bomb);
+        }
+        i++;
+    }
 
+    return arrBombs;
+}
