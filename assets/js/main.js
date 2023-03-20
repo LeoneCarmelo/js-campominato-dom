@@ -13,6 +13,7 @@ const selectEl = document.querySelector('select') // select
 //grid level
 function grid(cellQuantity, width_cell, width_container, bombs) {
     let text = 1 // set the text for the first cell
+    let points = 0 // set the initial points
     for(let i = 0; i < cellQuantity; i++) { 
         const singleCell = document.createElement('div') // create cell
         singleCell.classList.add('cell') // add class .cell
@@ -23,23 +24,39 @@ function grid(cellQuantity, width_cell, width_container, bombs) {
         containerEl.style.width = width_container // set the right width for the container
         containerEl.append(singleCell) //
         singleCell.addEventListener('click', function(){ // set blue color on cell when clicked
-            if (bombs.includes(Number(singleCell.textContent))){
-                singleCell.textContent = ''
-                singleCell.style.backgroundColor = 'orangered'
-                singleCell.style.transition = 'background-color 0.75s'
+            if (bombs.includes(Number(singleCell.textContent))){ // if the textContent of the cell is included in the array 
+                singleCell.textContent = ''//remove text
+                singleCell.style.backgroundColor = 'orangered'//set a bg-color
+                singleCell.style.transition = 'background-color 0.75s'//set a transition
+                const resultEl = document.createElement('div') // create an element to let the player see the points he collected
+                //styling the element
+                resultEl.textContent = `You lost, you've collected ${points} points`
+                resultEl.style.textAlign = 'center'
+                resultEl.style.padding = '1rem'
+                resultEl.style.fontSize = '2rem'
+                containerEl.insertAdjacentElement('beforebegin', resultEl)//insert the element before the grid
+                //create fake grid
+                const fakeGrid = document.createElement('div')
+                fakeGrid.style.width = '100%'
+                fakeGrid.style.height = '100%'
+                fakeGrid.style.position = 'absolute'
+                fakeGrid.style.top = '0'
+                fakeGrid.style.left = '0'
+                fakeGrid.style.zIndex = '1'
+                containerEl.append(fakeGrid)
             } else {
                 console.log(singleCell.textContent)
                 singleCell.textContent = ''
                 singleCell.style.backgroundColor = 'deepskyblue'
                 singleCell.style.transition = 'background-color 0.75s'
-
+                points += 1
             }  
         })
     } 
 }
 
 //generate grid
-btnEl.addEventListener('click', function() {
+btnEl.addEventListener('click', function start() {
     containerEl.innerHTML = '' // empty container
     let cellNumbers = levels();
     let cellWidth = widthCell()
@@ -47,7 +64,6 @@ btnEl.addEventListener('click', function() {
     let arrBombs = bombs()
     console.log(arrBombs)
     grid(cellNumbers, cellWidth, containerWidth, arrBombs)
-
 })
 
 //Set difficulty levels

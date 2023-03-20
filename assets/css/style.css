@@ -53,6 +53,7 @@ main {
     margin: auto;
     display: flex;
     flex-wrap: wrap;
+    position:relative;
 }
 
 .cell {
