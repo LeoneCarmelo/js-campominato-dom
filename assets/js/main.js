@@ -86,22 +86,31 @@ function widthContainer() {
 function bombs() {
     const bombs = 16
     let arrBombs = []
+    let bomb = 0
     if (selectEl.value == selectEl[0].value) {
         for (let i = 0; i < bombs; i++){
-            let bomb = Math.ceil(Math.random() * selectEl[0].value)
-            arrBombs.push(bomb)
+            bomb = Math.ceil(Math.random() * selectEl[0].value)
+            if (!(arrBombs.includes(bomb, -1))) {
+                arrBombs.push(bomb)
+            }
         }
     } else if (selectEl.value == selectEl[1].value) {
         for (let i = 0; i < bombs; i++){
-            let bomb = Math.ceil(Math.random() * selectEl[1].value)
-            arrBombs.push(bomb)
+            bomb = Math.ceil(Math.random() * selectEl[1].value)
+            if (!(arrBombs.includes(bomb, -1))) {
+                arrBombs.push(bomb)
+            }
         }
     } else if (selectEl.value == selectEl[2].value) {
         for (let i = 0; i < bombs; i++){
-            let bomb = Math.ceil(Math.random() * selectEl[2].value)
-            arrBombs.push(bomb)
+            bomb = Math.ceil(Math.random() * selectEl[2].value)
+            if (!(arrBombs.includes(bomb, -1))) {
+                arrBombs.push(bomb)
+            }
+            console.log(bombs)
         }
     }
+    console.log(arrBombs)
     return arrBombs
 }
 
