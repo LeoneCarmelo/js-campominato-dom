@@ -23,10 +23,16 @@ function grid(cellQuantity, width_cell, width_container, bombs) {
             containerEl.style.width = width_container // set the right width for the container
             containerEl.append(singleCell) //
             singleCell.addEventListener('click', function(){ // set blue color on cell when clicked
-                                console.log(singleCell.textContent)
-                                singleCell.textContent = ''
-                                singleCell.style.backgroundColor = 'deepskyblue'
-                                singleCell.style.transition = 'background-color 0.75s'
+                    if (bombs.includes(singleCell.textContent)){
+                        console.log(bombs)
+                        singleCell.style.backgroundColor = 'red'
+                    } else {
+                        console.log(singleCell.textContent)
+                        singleCell.textContent = ''
+                        singleCell.style.backgroundColor = 'deepskyblue'
+                        singleCell.style.transition = 'background-color 0.75s'
+                    }
+                
             })
         } 
 }
