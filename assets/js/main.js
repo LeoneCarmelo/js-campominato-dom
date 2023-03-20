@@ -12,29 +12,30 @@ const selectEl = document.querySelector('select') // select
 
 //grid level
 function grid(cellQuantity, width_cell, width_container, bombs) {
-        let text = 1 // set the text for the first cell
-        for(let i = 0; i < cellQuantity; i++) { 
-            const singleCell = document.createElement('div') // create cell
-            singleCell.classList.add('cell') // add class .cell
-            singleCell.textContent = text // add text
-            singleCell.style.width = width_cell // setting the right width
-            singleCell.style.textAlign = 'center' // set textAlign property
-            text += 1 // increase the text to set the new name of the new variable
-            containerEl.style.width = width_container // set the right width for the container
-            containerEl.append(singleCell) //
-            singleCell.addEventListener('click', function(){ // set blue color on cell when clicked
-                    if (bombs.includes(singleCell.textContent)){
-                        console.log(bombs)
-                        singleCell.style.backgroundColor = 'red'
-                    } else {
-                        console.log(singleCell.textContent)
-                        singleCell.textContent = ''
-                        singleCell.style.backgroundColor = 'deepskyblue'
-                        singleCell.style.transition = 'background-color 0.75s'
-                    }
-                
-            })
-        } 
+    let text = 1 // set the text for the first cell
+    for(let i = 0; i < cellQuantity; i++) { 
+        const singleCell = document.createElement('div') // create cell
+        singleCell.classList.add('cell') // add class .cell
+        singleCell.textContent = text // add text
+        singleCell.style.width = width_cell // setting the right width
+        singleCell.style.textAlign = 'center' // set textAlign property
+        text += 1 // increase the text to set the new name of the new variable
+        containerEl.style.width = width_container // set the right width for the container
+        containerEl.append(singleCell) //
+        singleCell.addEventListener('click', function(){ // set blue color on cell when clicked
+            if (bombs.includes(Number(singleCell.textContent))){
+                singleCell.textContent = ''
+                singleCell.style.backgroundColor = 'orangered'
+                singleCell.style.transition = 'background-color 0.75s'
+            } else {
+                console.log(singleCell.textContent)
+                singleCell.textContent = ''
+                singleCell.style.backgroundColor = 'deepskyblue'
+                singleCell.style.transition = 'background-color 0.75s'
+
+            }  
+        })
+    } 
 }
 
 //generate grid
