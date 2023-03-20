@@ -11,7 +11,7 @@ const selectEl = document.querySelector('select') // select
 
 
 //grid level
-function grid(cellQuantity, width_cell, width_container) {
+function grid(cellQuantity, width_cell, width_container, bombs) {
         let text = 1 // set the text for the first cell
         for(let i = 0; i < cellQuantity; i++) { 
             const singleCell = document.createElement('div') // create cell
@@ -23,10 +23,11 @@ function grid(cellQuantity, width_cell, width_container) {
             containerEl.style.width = width_container // set the right width for the container
             containerEl.append(singleCell) //
             singleCell.addEventListener('click', function(){ // set blue color on cell when clicked
-                console.log(singleCell.textContent)
-                singleCell.textContent = ''
-                singleCell.style.backgroundColor = 'deepskyblue'
-                singleCell.style.transition = 'background-color 0.75s'
+                    console.log(singleCell.textContent)
+                    singleCell.textContent = ''
+                    singleCell.style.backgroundColor = 'deepskyblue'
+                    singleCell.style.transition = 'background-color 0.75s'
+                
             })
         } 
 }
@@ -37,7 +38,8 @@ btnEl.addEventListener('click', function() {
     let cellNumbers = levels();
     let cellWidth = widthCell()
     let containerWidth = widthContainer()
-    grid(cellNumbers, cellWidth, containerWidth)
+    let arrBombs = bombs()
+    grid(cellNumbers, cellWidth, containerWidth, arrBombs)
 
 })
 
@@ -79,4 +81,28 @@ function widthContainer() {
     }
     return width
 }
+
+//Set bombs
+function bombs() {
+    const bombs = 16
+    let arrBombs = []
+    if (selectEl.value == selectEl[0].value) {
+        for (let i = 0; i < bombs; i++){
+            let bomb = Math.ceil(Math.random() * selectEl[0].value)
+            arrBombs.push(bomb)
+        }
+    } else if (selectEl.value == selectEl[1].value) {
+        for (let i = 0; i < bombs; i++){
+            let bomb = Math.ceil(Math.random() * selectEl[1].value)
+            arrBombs.push(bomb)
+        }
+    } else if (selectEl.value == selectEl[2].value) {
+        for (let i = 0; i < bombs; i++){
+            let bomb = Math.ceil(Math.random() * selectEl[2].value)
+            arrBombs.push(bomb)
+        }
+    }
+    return arrBombs
+}
+
 
