@@ -47,7 +47,7 @@ function grid(cellQuantity, width_cell, width_container, bombs) {
             } else {
                 console.log(singleCell.textContent)
                 singleCell.textContent = ''
-                singleCell.style.backgroundColor = 'deepskyblue'
+                singleCell.style.backgroundColor = 'lightslategrey'
                 singleCell.style.transition = 'background-color 0.75s'
                 points += 1
             }  
